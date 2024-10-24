@@ -16,6 +16,9 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
+#instalando docker
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 # Add docker in admin user
 sudo usermod -aG docker $(whoami)
 
@@ -23,9 +26,8 @@ sudo usermod -aG docker $(whoami)
 #                             COMANDOS                              #
 #####################################################################
 
-#listar imagens rodando
+#listar imagens rodando(necessário reiniciar se for nativo, ou no wsl fechar e abrir novamente ou usar sudo)
 docker ps
 
-#funcionou
 
 
