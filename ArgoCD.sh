@@ -19,4 +19,4 @@ argocd admin initial-password -n argocd
 
 ## add cluster -- INSERIR ENDPOIN NO .KUBE/CONFIG AO INVÉS DE 127.0.0.1
 kubectl get endpoints
-argocd cluster add kind-hml --name HML
+argocd cluster add kind-hml --name HML --kubeconfig /home/bruno/.kube/argo-config
