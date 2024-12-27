@@ -29,5 +29,7 @@ sudo usermod -aG docker $(whoami)
 #listar imagens rodando(necessário reiniciar se for nativo, ou no wsl fechar e abrir novamente ou usar sudo)
 docker ps
 
+## listar redes ####
+docker network ls
 
 

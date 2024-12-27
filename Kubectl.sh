@@ -1,0 +1,35 @@
+#listar pods
+kubectl get pods -n NAMESPACE -o wide
+
+#listar contextos
+kubectl config get-contexts
+
+#Selecionar contexto
+kubectl config use-context NOME_CONTEXTO
+
+#Criar usuário kubernets
+openssl genrsa -out usuarioteste.key 2048
+openssl req -new -key usuarioteste.key -subj "/CN=usuarioteste" -out usuarioteste.csr
+cat usuarioteste.csr | base64 | tr -d "\n"
+
+# LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1hEQ0NBVVFDQVFBd0Z6RVZNQk1HQTFVRUF3d01kWE4xWVhKcGIzUmxjM1JsTUlJQklqQU5CZ2txaGtpRwo5dz
+# BCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBeHBvWW1YYTM2d1djek5LSmxYcTdqdFowUitOb3NDSElBbk5QCnpSd2VYZndGVjJ5dGFtQjBnTm9DY24wcUk5OUpxd3RjVDBneDgvVHFq
+# TUFCYTg3N3dudG5xaWRLeHdWRHRrYmkKeUgzUG5QUXd0OVljSWpDc3F1bm1VbDhvMEcxSWtiNlYvL1p2NldSbENQSUUzUlQvL2wvc1pZSTVMNnRqbk56dApKblpBN0o4a29BS0Q1dX
+# dDb08xa3JlSGJ0Wk5FYnZNNlkvZkJRSUN3L2JSRW9BUjgvT3Iza20xcFlzY2VIWWM4ClY0U0xLRFgwOWJPYWxNS004ZkxuL3BWNnFMOHc1aVVCNURjNjg4VXlFUXQzNDlaOGthb1F5
+# Y2RFaEZ6RVBsYmMKQzJmalpKWWFTTm5xeCtaTHBWNHpFdGE0OFRVckxNTCtjYzV1RkxwZHRpdWxXYUkwandJREFRQUJvQUF3RFFZSgpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFBZDJ3TH
+# NLTStJM25rTUdkdnlUZGF2amNIQmdRcEVWRjNRRmlTNUJXOGpNCnZ0SHFSNnBpMEliK09MNGhQTW42ZkFoT2VpdU5GWEc0Sm90QWJoZ3pPQ1MrZW1pZ20zMVNSWEZqZmxydno1TE8K
+# WlRoVGRwdVJOaWI5dUpnRHNqWjZ3QUt4Vzh4UnROTWVJUUx3RGRQQVdlTXZKdTlyOVNGTzNSc0dPZlVubm03NwpOSTNDc044SjJkMzhzVXpyR1RJVjYzUkgvbU40WGYxUnhFNkZhY1
+# pjTEFYdnlXb2FhOHFBTFV4RTB0Wks1bWtJCjZBODZveGtLRXc3QThKZ2lsT0E2WWY0Vmp2cGplcC80NFE0bGk4MmZyb2lObk94QXNOcXNZMjZVVkFnSE85SVYKZlhpM0pTUTVweHc0
+# UTg1NXFYbENZS29wN1FpYkZXVDlrWksxM05Gb1pvMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tCg==
+
+
+kubectl apply -f k8s-csr.yaml
+kubectl certificate approve usuarioteste
+kubectl get csr usuarioteste -o yaml
+
+echo"CERTIFICADO" | base64 --decode > usuarioteste.crt
+kubectl get nodes --kubeconfig config.yaml
+
+
+
+
