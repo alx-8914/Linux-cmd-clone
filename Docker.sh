@@ -29,4 +29,4 @@ docker ps
 ## listar redes ####
 docker network ls
 
-
+# Funcionou o SSH do la do Servidor
